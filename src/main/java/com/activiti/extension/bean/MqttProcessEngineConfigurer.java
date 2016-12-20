@@ -19,6 +19,9 @@ public class MqttProcessEngineConfigurer implements ProcessEngineConfigurationCo
     @Autowired
     protected Environment environment;
     
+    @Autowired 
+    protected BrokerListener brokerListener;
+    
 	@Override
 	public void processEngineConfigurationInitialized(SpringProcessEngineConfiguration config) {
 		// TODO Auto-generated method stub

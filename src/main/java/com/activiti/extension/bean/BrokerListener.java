@@ -1,5 +1,5 @@
 package com.activiti.extension.bean;
 
-public class MqttActivitBrokerListener {
+public interface BrokerListener {
 
 }

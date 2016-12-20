@@ -2,6 +2,7 @@ package com.activiti.extension.bean;
 
 import com.activiti.service.reporting.eventhandler.ActivitiEventHandler;
 import com.activiti.service.runtime.events.RuntimeEventListener;
+
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventType;
@@ -12,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +32,7 @@ public class MqttActivitiEventListener implements RuntimeEventListener {
 
     @Autowired
     protected Environment environment;
-
+    
     protected Map<ActivitiEventType, List<ActivitiEventHandler>> eventHandlers = new HashMap<>();
 
     @PostConstruct
@@ -47,9 +49,6 @@ public class MqttActivitiEventListener implements RuntimeEventListener {
         }
 
         logger.info("Initializing MqttActivitiEventListener");
-
-        String mqttUrl = environment.getProperty("event.forwarding.mqtt.url");
-        String clientId = environment.getProperty("event.forwarding.mqtt.clientId");
         
         // add event handlers here for event types that we need to know about
         //addEventHandler(EVE, new handler goes here);
