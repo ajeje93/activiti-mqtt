@@ -49,6 +49,7 @@ public class MqttActivitiEventListener implements RuntimeEventListener {
         logger.info("Initializing MqttActivitiEventListener");
 
         String mqttUrl = environment.getProperty("event.forwarding.mqtt.url");
+        String clientId = environment.getProperty("event.forwarding.mqtt.clientId");
         
         // add event handlers here for event types that we need to know about
         //addEventHandler(EVE, new handler goes here);

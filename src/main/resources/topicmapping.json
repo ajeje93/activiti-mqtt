@@ -1,3 +1,7 @@
 {
-	"topic":"process"
+	"topic":{
+		"qos":"2",
+		"process":"process-def-id",
+		"topicName":"topic"
+	}
 }
