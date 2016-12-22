@@ -1,4 +1,4 @@
-package com.activiti.extension.bean;
+package com.activiti.extension.iot;
 
 public interface BrokerListener {
 

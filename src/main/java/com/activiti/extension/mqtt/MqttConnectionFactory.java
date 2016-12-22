@@ -1,4 +1,4 @@
-package com.activiti.extension.bean;
+package com.activiti.extension.mqtt;
 
 import javax.annotation.PostConstruct;
 
@@ -26,6 +26,7 @@ public class MqttConnectionFactory {
     
 	@PostConstruct
     public void init() {
+		
 		brokerUrl = environment.getProperty("event.forwarding.mqtt.broker.url");
 	    clientId = environment.getProperty("event.forwarding.mqtt.clientId");
 	    
@@ -53,27 +54,35 @@ public class MqttConnectionFactory {
 	 */
 	private boolean testConnection() {
 
+		String content = "oh hai";
+		String topic = "testtopic";
+		int QoS = 2;
+		
         try {
             MqttClient sampleClient = new MqttClient(brokerUrl, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            //System.out.println("Connecting to broker: "+broker);
+            logger.debug("Connecting to broker: " + brokerUrl);
+            
             sampleClient.connect(connOpts);
-            //System.out.println("Connected");
-            //System.out.println("Publishing message: "+content);
-            MqttMessage message = new MqttMessage("oh hai".getBytes());
-            message.setQos(2);
-            sampleClient.publish("test topic", message);
-            //System.out.println("Message published");
+            logger.debug("Connected");
+            
+            logger.debug("Publishing message: " + content);
+            MqttMessage message = new MqttMessage(content.getBytes());
+            message.setQos(QoS);
+            sampleClient.publish(topic, message);
+            logger.debug("Message published");
+            
             sampleClient.disconnect();
-            //System.out.println("Disconnected");
+            logger.debug("Disconnected");
+            
             return true;
         } catch(MqttException me) {
-            //System.out.println("reason "+me.getReasonCode());
-            //System.out.println("msg "+me.getMessage());
-            //System.out.println("loc "+me.getLocalizedMessage());
-            //System.out.println("cause "+me.getCause());
-            //System.out.println("excep "+me);
+        	logger.debug("reason " + me.getReasonCode());
+        	logger.debug("msg " + me.getMessage());
+        	logger.debug("loc " + me.getLocalizedMessage());
+        	logger.debug("cause " + me.getCause());
+        	logger.debug("excep " + me);
             me.printStackTrace();
             return false;
         }

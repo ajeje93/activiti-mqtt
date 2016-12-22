@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 import com.activiti.api.engine.ProcessEngineConfigurationConfigurer;
+import com.activiti.extension.iot.BrokerListener;
 
 public class MqttProcessEngineConfigurer implements ProcessEngineConfigurationConfigurer {
 
@@ -24,7 +25,12 @@ public class MqttProcessEngineConfigurer implements ProcessEngineConfigurationCo
     
 	@Override
 	public void processEngineConfigurationInitialized(SpringProcessEngineConfiguration config) {
-		// TODO Auto-generated method stub
+		
+		// get a connection to the MQTT broker
+		
+		// get a list of our topic -> process mappings
+		
+		// subscribe to topics and set listeners for each
 
 	}
 
