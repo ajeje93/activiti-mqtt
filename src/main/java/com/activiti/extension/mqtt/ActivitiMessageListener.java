@@ -3,11 +3,14 @@ package com.activiti.extension.mqtt;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class ActivitiMqttMessageListener implements IMqttMessageListener {
+public class ActivitiMessageListener implements IMqttMessageListener {
 
 	@Override
 	public void messageArrived(String topic, MqttMessage msg) throws Exception {
-		// TODO Auto-generated method stub
+		
+		// do we care about this topic?
+		
+		// Are we starting a process or affecting an existing process?
 
 	}
 
